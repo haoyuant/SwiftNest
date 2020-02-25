@@ -11,63 +11,41 @@ public enum PartyStatus {
     case idle, matching, playing, dismissed
 }
 
-public protocol QueueingUnit {
-    var numOfPlayers: Int { get }
-}
-
-public class Party {
-    var id: UUID
-    var quota: Int
-    var leader: Player
-    var status: PartyStatus
+public class Party: MatchingGroup {
+    public private(set) var status: PartyStatus
+    public private(set) var startMatching: Int64
     
-    var numOfPlayers: Int {
-        return players.count
-    }
-    
-    private var players: [String: Player]
-    
-    init(leader: Player, quota: Int) {
-        self.id = UUID()
-        self.leader = leader
-        self.quota = quota
-        self.players = [String: Player]()
-        self.players[leader.id] = leader
+    override init(host: Player, quota: Int) {
         self.status = .idle
+        self.startMatching = 0
+        super.init(host: host, quota: quota)
     }
     
-    func join(player: Player) -> Bool {
-        if numOfPlayers < quota {
-            players[player.id] = player
-            return true
-        } else {
-            print("The party is full, cannot invite new member.")
-            return false
-        }
-    }
-    
-    func leave(player: Player) -> Bool {
-        return players.removeValue(forKey: player.id) != nil
-    }
-    
-    func dismiss() {
-        for (_, player) in players {
-            //TODO Notify players that the party has been dismissed
-        }
-    }
-}
-extension party: QueueingUnit {
+    override func join(player: Player) -> Bool {
+           if super.join(player: player) {
+               //TODO Notify a new player has joined this party
+               return true
+           } else {
+               //TODO Notify the player failed to join this praty
+               return false
+           }
+       }
+       
+       override func leave(player: Player) -> Bool {
+           if super.leave(player: player) {
+               //TODO Notify a player has left this party
+               return true
+           } else {
+               //TODO Notify the player doesn't exist in this party
+               return false
+           }
+       }
+       
+       override func dismiss() {
+           for (_, player) in players {
+               //TODO Notify all players that this party is being dismissed
+           }
+       }
 }
 
-public class Player {
-    var id: String!
-    
-    init() {
-    }
-}
-
-extension Player: QueueingUnit {
-    public var numOfPlayers: Int {
-        return 1
-    }
-}
+extension Party: MatchingUnit {}
