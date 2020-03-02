@@ -7,14 +7,18 @@
 
 import Foundation
 import NIO
+import NIOExtras
+import SwiftProtobuf
+//public final class Arcade {
+//    private var lobbies: [String: Lobby]
+//    private var players: [String: Player ]
+//    private var parties: [String: Party]
+//}
 
-public final class Hall {
-    
-}
-
-final class HallChannelHandler: ChannelInboundHandler {
+final class ArcadeChannelHandler: ChannelInboundHandler {
     public typealias InboundIn = ByteBuffer
     public typealias OutboundOut = ByteBuffer
+    
 
     // All access to channels is guarded by channelsSyncQueue.
     private let channelsSyncQueue = DispatchQueue(label: "channelsQueue")

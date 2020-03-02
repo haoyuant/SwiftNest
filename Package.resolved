@@ -11,6 +11,24 @@
         }
       },
       {
+        "package": "swift-nio-extras",
+        "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
+        "state": {
+          "branch": null,
+          "revision": "b4dbfacff47fb8d0f9e0a422d8d37935a9f10570",
+          "version": "1.4.0"
+        }
+      },
+      {
+        "package": "SwiftProtobuf",
+        "repositoryURL": "https://github.com/apple/swift-protobuf.git",
+        "state": {
+          "branch": null,
+          "revision": "7790acf0a81d08429cb20375bf42a8c7d279c5fe",
+          "version": "1.8.0"
+        }
+      },
+      {
         "package": "SwiftKCP",
         "repositoryURL": "https://github.com/haoyuant/SwiftKCP.git",
         "state": {
