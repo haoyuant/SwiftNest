@@ -7,7 +7,7 @@ let package = Package(
     name: "SwiftNest",
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/haoyuant/SwiftKCP.git", from: "1.1.0"),
+        .package(url: "https://github.com/haoyuant/SwiftKCP.git", from: "1.1.1"),
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.14.0"),
         .package(url: "https://github.com/apple/swift-nio-extras.git", from: "1.4.0"),
         .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.6.0"),
